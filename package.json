@@ -7,7 +7,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "publish": "npm publish --access public"
+    "publish": "tsc && npm publish --access public"
   },
   "author": "@passimx",
   "license": "ISC",
