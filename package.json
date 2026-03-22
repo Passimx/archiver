@@ -1,0 +1,20 @@
+{
+  "name": "@passimx/archiver",
+  "version": "1.0.1",
+  "description": "archiver for telegram chats",
+  "keywords": ["telegram", "chats", "telegraph", "keep", "save", "export", "logs"],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "author": "@passimx",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "^5.9.3"
+  },
+  "peerDependencies": {
+    "telegraf": "^4.0.0"
+  }
+}
