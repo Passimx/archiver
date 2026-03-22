@@ -16,9 +16,9 @@ export function patchTelegram(send: (data: any) => void) {
         const result = await originalCall.call(this, method, payload, ...rest);
 
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        if (method === 'sendMessage') send({ message: result });
+        if (method.includes('send')) send({ message: result });
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        else if (method === 'editMessageText') send({ edited_message: result });
+        else if (method.includes('edit')) send({ edited_message: result });
 
         // eslint-disable-next-line @typescript-eslint/no-unsafe-return
         return result;

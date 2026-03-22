@@ -1,6 +1,6 @@
 {
   "name": "@passimx/archiver",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "archiver for telegram chats",
   "keywords": ["telegram", "chats", "telegraph", "keep", "save", "export", "logs"],
   "main": "dist/index.js",
