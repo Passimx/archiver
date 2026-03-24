@@ -1,14 +1,16 @@
 import { Telegraf } from 'telegraf';
 import { patchTelegram } from './patch';
 import { ChatInterface } from './types/chat.interface';
+import { ArchiverOptionsInterface } from './types/archiver-options.interface';
+import { Envs } from './common/envs';
 
 export class Archiver {
   private apiKey: string;
   private endpoint: string;
 
-  constructor(options: { apiKey: string; endpoint: string }) {
+  constructor(options: ArchiverOptionsInterface) {
+    this.endpoint = options.endpoint ?? Envs.endpoint;
     this.apiKey = options.apiKey;
-    this.endpoint = options.endpoint;
   }
 
   public async exportChat(id: number): Promise<ChatInterface | null> {
