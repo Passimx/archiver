@@ -1,6 +1,6 @@
 import { Telegraf } from 'telegraf';
 import { patchTelegram } from './patch';
-import {ChatInterface} from "./types/chat.interface";
+import { ChatInterface } from './types/chat.interface';
 
 export class Archiver {
   private apiKey: string;
@@ -18,12 +18,11 @@ export class Archiver {
   public listen(bot: Telegraf) {
     patchTelegram((data) => this.postApiAction(data));
 
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const originalHandleUpdate = bot.handleUpdate.bind(bot);
 
     bot.handleUpdate = (update, webhookResponse) => {
       void this.postApiAction(update);
-      // eslint-disable-next-line @typescript-eslint/no-unsafe-return,@typescript-eslint/no-unsafe-call
+
       return originalHandleUpdate(update, webhookResponse);
     };
   }

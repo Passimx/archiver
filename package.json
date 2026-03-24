@@ -2,20 +2,40 @@
   "name": "@passimx/archiver",
   "version": "1.0.2",
   "description": "archiver for telegram chats",
-  "keywords": ["telegram", "chats", "telegraph", "keep", "save", "export", "logs"],
+  "keywords": [
+    "telegram",
+    "chats",
+    "telegraph",
+    "analytics",
+    "keep",
+    "save",
+    "export",
+    "logs"
+  ],
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "publish": "tsc && npm publish --access public"
+    "publish": "tsc && npm publish --access public",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint \"{src,apps,libs}/**/*.ts\" --fix"
   },
   "author": "@passimx",
   "license": "ISC",
   "devDependencies": {
+    "@eslint/eslintrc": "^3.3.5",
+    "@eslint/js": "^10.0.1",
     "@types/node": "^25.5.0",
-    "typescript": "^5.9.3"
+    "eslint": "^10.1.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.57.2"
   },
   "peerDependencies": {
     "telegraf": "^4.0.0"
+  },
+  "dependencies": {
+    "prettier": "^3.8.1"
   }
 }

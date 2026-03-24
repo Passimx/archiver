@@ -4,23 +4,19 @@ import { Telegram } from 'telegraf';
 let patched = false;
 
 export function patchTelegram(send: (data: any) => void) {
-    if (patched) return;
-    patched = true;
+  if (patched) return;
+  patched = true;
 
-    // eslint-disable-next-line @typescript-eslint/unbound-method
-    const originalCall = Telegram.prototype.callApi;
+  // eslint-disable-next-line @typescript-eslint/unbound-method
+  const originalCall = Telegram.prototype.callApi;
 
-    // @ts-ignore
-    Telegram.prototype.callApi = async function (method, payload, ...rest) {
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        const result = await originalCall.call(this, method, payload, ...rest);
+  // @ts-expect-error override telegraf internal method
+  Telegram.prototype.callApi = async function (method, payload, ...rest) {
+    const result = await originalCall.call(this, method, payload, ...rest);
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        if (method.includes('send')) send({ message: result });
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-        else if (method.includes('edit')) send({ edited_message: result });
+    if (method.includes('send')) send({ message: result });
+    else if (method.includes('edit')) send({ edited_message: result });
 
-        // eslint-disable-next-line @typescript-eslint/no-unsafe-return
-        return result;
-    };
+    return result;
+  };
 }
